@@ -1,6 +1,7 @@
 package wordPlay.handler;
 
 import wordPlay.util.FileProcessor;
+import wordPlay.handler.MetricsCalculator;
 import java.util.ArrayList;
 
 import java.io.IOException;
@@ -20,6 +21,8 @@ public class WordRotator{
   
     String str = fp.poll();
     int index = 1;
+    double dotCount=0;
+    MetricsCalculator mC = new MetricsCalculator();
     
     while(str != null)
     {
@@ -27,6 +30,7 @@ public class WordRotator{
         if(str.endsWith(".")){
             str = str.split("\\.")[0];
             index = 0;
+            dotCount++;
         } 
         while(iterator != 0)
         {
@@ -40,13 +44,11 @@ public class WordRotator{
         str = fp.poll();
     }
     System.out.println(wordList);
+    mC.calculateMetrics(wordList);
+    mC.calculateMetrics2(wordList, dotCount);
   
   }
   
-  public void calculateMetrics(String str){
-    
-      
   
-  }
     
 }
