@@ -1,4 +1,4 @@
-package wordPlay.handler;
+package wordPlay.metrics;
 
 import java.util.ArrayList;
 
