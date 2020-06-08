@@ -32,6 +32,7 @@ public class Driver {
     wr.wordRotation();
     
     res.writeToStdout();
+    res.writeToFile();
     
 		
 

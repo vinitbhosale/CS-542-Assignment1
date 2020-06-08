@@ -2,6 +2,14 @@ package wordPlay.util;
 
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
+import java.io.IOException;
+
+
+
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
     private String result = "";
@@ -10,6 +18,10 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     
     private String outputFilePath;
     private String metricsFilePath;
+    
+    private File outputFile, metriceOutputFile;
+    private BufferedWriter outputBufferedWriter, metricsBufferedWriter;
+    private FileWriter outputFileWriter, metricsOutputFileWriter;
     
     public Results(String inOutputFilePath, String inMetricsFilePath){
       outputFilePath = inOutputFilePath;
@@ -42,11 +54,33 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
       System.out.println("AVG_NUM_WORDS_PER_SENTENCE - "+avgNumWordsPerSentence);  
       
     }
-    public void writeToFile(){
     
-      
+    public void writeToFile()throws IOException{
     
-    }
+        outputFile = new File(outputFilePath);
+        metriceOutputFile = new File(metricsFilePath);
+        
+        if(!outputFile.exists() && !metriceOutputFile.exists())
+        {
+          outputFile.createNewFile();
+          metriceOutputFile.createNewFile();
+        }
+        
+        outputFileWriter = new FileWriter(outputFile);
+        metricsOutputFileWriter = new FileWriter(metriceOutputFile);
+        
+        outputBufferedWriter = new BufferedWriter(outputFileWriter);
+        metricsBufferedWriter = new BufferedWriter(metricsOutputFileWriter);
+        
+        outputBufferedWriter.write(result.trim());
+        metricsBufferedWriter.write("AVG_NUM_WORDS_PER_SENTENCE - "+avgNumWordsPerSentence+"\n"+"AVG_WORD_LENGTH - "+avgWordLength);
+        
+        outputBufferedWriter.close();
+        metricsBufferedWriter.close();
+    
+        
+      }
+
     
     	
 }
