@@ -1,5 +1,6 @@
 package wordPlay.driver;
 import wordPlay.util.FileProcessor;
+import wordPlay.util.Results;
 import wordPlay.handler.WordRotator;
 
 import java.io.IOException;
@@ -23,10 +24,14 @@ public class Driver {
 		}
 		System.out.println("Hello World! Lets get started with the assignment");
     FileProcessor fileProcsr = new FileProcessor(args[0]);
+    Results res = new Results(args[1],args[2]);
     
-    WordRotator wr = new WordRotator(fileProcsr);
+    
+    WordRotator wr = new WordRotator(fileProcsr, res);
     
     wr.wordRotation();
+    
+    res.writeToStdout();
     
 		
 

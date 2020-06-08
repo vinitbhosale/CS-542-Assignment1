@@ -1,13 +1,23 @@
 package wordPlay.metrics;
 
+import wordPlay.util.Results;
 import java.util.ArrayList;
 
 import java.io.IOException;
 
 public class MetricsCalculator {
 
+    double avgWordLength=0;
+    double avgNumWordsPerSentence=0;
+    
+    public void calculateMeterics(ArrayList<String> arrLstStr, double dot, Results res){
+      calculateAvgWrdLength(arrLstStr);
+      calculateAvgWrdCount(arrLstStr, dot);
+      res.storeMetricsResult(avgWordLength, avgNumWordsPerSentence);
+    }
+
     // Calculate average word length
-  public void calculateMetrics(ArrayList<String> arrLstStr){
+  private void calculateAvgWrdLength(ArrayList<String> arrLstStr){
       
       double counter = 0;
       double sum = 0;
@@ -17,17 +27,17 @@ public class MetricsCalculator {
           sum += temp.length();
           counter++;
       }
-      double average = sum/counter;
-      System.out.println("AVG_WORD_LENGTH - "+average);
+      avgWordLength = sum/counter;
+      
+      
   }
   
-  // Calcualte average word per sentance
-  public void calculateMetrics2(ArrayList<String> arrLststr1, double dot){
+  
+  private void calculateAvgWrdCount(ArrayList<String> arrLststr1, double dot){
   
       double sum = arrLststr1.size();
-      //System.out.println(sum);
-      double avg1 = sum/dot;
-      System.out.println("AVG_NUM_WORDS_PER_SENTENCE - "+avg1);
+      avgNumWordsPerSentence = sum/dot;
+      
     
   
   }
