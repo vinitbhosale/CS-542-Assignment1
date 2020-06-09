@@ -7,25 +7,23 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 
 
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
     private String result = "";
-    private double avgWordLength;
-    private double avgNumWordsPerSentence;
+    private float avgWordLength;
+    private float avgNumWordsPerSentence;
     
-    private String outputFilePath;
-    private String metricsFilePath;
+    private String filePath;
     
-    private File outputFile, metriceOutputFile;
-    private BufferedWriter outputBufferedWriter, metricsBufferedWriter;
-    private FileWriter outputFileWriter, metricsOutputFileWriter;
+    private File outputFile;
+    private BufferedWriter outputBufferedWriter;
     
-    public Results(String inOutputFilePath, String inMetricsFilePath){
-      outputFilePath = inOutputFilePath;
-      metricsFilePath = inMetricsFilePath;
+    public Results(String path){
+      filePath = path;
     }
     
     public void storeWrdRotaterResult(String str, boolean isSentenceComplete){
@@ -41,42 +39,38 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
        
     }
     
-    public void storeMetricsResult(double inAvgWordLength, double inAvgNumWordsPerSentence){
-      avgWordLength = inAvgWordLength;
-      avgNumWordsPerSentence = inAvgNumWordsPerSentence;
+    public void storeMetricsResult(float inAvgWordLength, float inAvgNumWordsPerSentence){
+      
+      String pattern = "##.##";
+      DecimalFormat decimalFormat = new DecimalFormat(pattern);
+      
+      avgWordLength =inAvgWordLength;
+      avgNumWordsPerSentence=inAvgNumWordsPerSentence;
+          
+      result = "AVG_NUM_WORDS_PER_SENTENCE - "+decimalFormat.format(inAvgNumWordsPerSentence)+"\n"+"AVG_WORD_LENGTH - "+decimalFormat.format(inAvgWordLength);
     }
     
     public void writeToStdout(){
       
       System.out.println("OUTPUT:");
       System.out.println(result);
-      System.out.println("AVG_WORD_LENGTH - "+avgWordLength);
-      System.out.println("AVG_NUM_WORDS_PER_SENTENCE - "+avgNumWordsPerSentence);  
       
     }
     
     public void writeToFile()throws IOException{
-    
-        outputFile = new File(outputFilePath);
-        metriceOutputFile = new File(metricsFilePath);
         
-        if(!outputFile.exists() && !metriceOutputFile.exists())
+        outputFile = new File(filePath);
+        if(!outputFile.exists())
         {
           outputFile.createNewFile();
-          metriceOutputFile.createNewFile();
         }
         
-        outputFileWriter = new FileWriter(outputFile);
-        metricsOutputFileWriter = new FileWriter(metriceOutputFile);
-        
-        outputBufferedWriter = new BufferedWriter(outputFileWriter);
-        metricsBufferedWriter = new BufferedWriter(metricsOutputFileWriter);
+        outputBufferedWriter = new BufferedWriter(new FileWriter(outputFile));
         
         outputBufferedWriter.write(result.trim());
-        metricsBufferedWriter.write("AVG_NUM_WORDS_PER_SENTENCE - "+avgNumWordsPerSentence+"\n"+"AVG_WORD_LENGTH - "+avgWordLength);
         
         outputBufferedWriter.close();
-        metricsBufferedWriter.close();
+       
     
         
       }

@@ -1,7 +1,7 @@
 package wordPlay.driver;
 import wordPlay.util.FileProcessor;
 import wordPlay.util.Results;
-import wordPlay.handler.WordRotator;
+import wordPlay.driver.Helper;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -23,16 +23,18 @@ public class Driver {
 			System.exit(0);
 		}
 		System.out.println("Hello World! Lets get started with the assignment");
+   
     FileProcessor fileProcsr = new FileProcessor(args[0]);
-    Results res = new Results(args[1],args[2]);
+    Results wordRotRes = new Results(args[1]);
+    Results metricsRes = new Results(args[2]);
     
+    Helper hp = new Helper(fileProcsr, wordRotRes, metricsRes);
     
-    WordRotator wr = new WordRotator(fileProcsr, res);
-    
-    wr.wordRotation();
-    
-    res.writeToStdout();
-    res.writeToFile();
+    hp.wordRotate();
+    wordRotRes.writeToStdout();
+    wordRotRes.writeToFile();
+    metricsRes.writeToStdout();
+    metricsRes.writeToFile();
     
 		
 

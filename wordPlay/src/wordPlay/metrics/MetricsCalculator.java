@@ -7,10 +7,10 @@ import java.io.IOException;
 
 public class MetricsCalculator {
 
-    double avgWordLength=0;
-    double avgNumWordsPerSentence=0;
+    float avgWordLength=0;
+    float avgNumWordsPerSentence=0;
     
-    public void calculateMeterics(ArrayList<String> arrLstStr, double dot, Results res){
+    public void calculateMeterics(ArrayList<String> arrLstStr, float dot, Results res){
       calculateAvgWrdLength(arrLstStr);
       calculateAvgWrdCount(arrLstStr, dot);
       res.storeMetricsResult(avgWordLength, avgNumWordsPerSentence);
@@ -19,8 +19,8 @@ public class MetricsCalculator {
     // Calculate average word length
   private void calculateAvgWrdLength(ArrayList<String> arrLstStr){
       
-      double counter = 0;
-      double sum = 0;
+      float counter = 0;
+      float sum = 0;
       
       for(String temp: arrLstStr){
         
@@ -33,9 +33,9 @@ public class MetricsCalculator {
   }
   
   
-  private void calculateAvgWrdCount(ArrayList<String> arrLststr1, double dot){
+  private void calculateAvgWrdCount(ArrayList<String> arrLststr1, float dot){
   
-      double sum = arrLststr1.size();
+      float sum = arrLststr1.size();
       avgNumWordsPerSentence = sum/dot;
       
     
