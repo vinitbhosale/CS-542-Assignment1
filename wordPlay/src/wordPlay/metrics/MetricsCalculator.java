@@ -5,18 +5,34 @@ import java.util.ArrayList;
 
 import java.io.IOException;
 
+/**
+* Class consisting methods calculating average word length
+* average number per sentence and storing both results
+* in Results file
+*/
 public class MetricsCalculator {
 
     float avgWordLength=0;
     float avgNumWordsPerSentence=0;
     
+    /**
+    * constructor for calling calculateAvgWrdLength, calculateAvgWrdCount methods and
+    * storeMetricsResult methods in Results class
+    *
+    * @param arrLstStr - ArrayList of rotated words, dot - dot period(.) count, res - Results object to store average values by calling
+    * storeMetricsResult method in Results class
+    */
     public void calculateMeterics(ArrayList<String> arrLstStr, float dot, Results res){
       calculateAvgWrdLength(arrLstStr);
       calculateAvgWrdCount(arrLstStr, dot);
       res.storeMetricsResult(avgWordLength, avgNumWordsPerSentence);
     }
 
-    // Calculate average word length
+    /** 
+    * method to calculate average word length
+    *
+    * @param arrLstStr - String ArrayList of rotated words
+    */
   private void calculateAvgWrdLength(ArrayList<String> arrLstStr){
       
       float counter = 0;
@@ -31,7 +47,11 @@ public class MetricsCalculator {
        
   }
   
-  // Calculate average word count per sentence
+  /** 
+  * method to calculate average word count per sentence
+  *
+  * @param arrLstStr - String ArrayList of rotated words, dot - dot period(.) count
+  */
   private void calculateAvgWrdCount(ArrayList<String> arrLststr1, float dot){
   
       float sum = arrLststr1.size();
