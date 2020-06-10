@@ -44,7 +44,7 @@ public final class FileProcessor {
 		String line = reader.readLine();
 		if (null != line) {
 			words = new LinkedList<String>(Arrays.asList(line.split("\\s+")));
-      
+ 
 		}
    
 	}

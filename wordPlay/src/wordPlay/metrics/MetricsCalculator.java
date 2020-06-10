@@ -28,17 +28,14 @@ public class MetricsCalculator {
           counter++;
       }
       avgWordLength = sum/counter;
-      
-      
+       
   }
   
-  
+  // Calculate average word count per sentence
   private void calculateAvgWrdCount(ArrayList<String> arrLststr1, float dot){
   
       float sum = arrLststr1.size();
-      avgNumWordsPerSentence = sum/dot;
-      
-    
+      avgNumWordsPerSentence = sum/dot;  
   
   }
 

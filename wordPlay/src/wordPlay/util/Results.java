@@ -1,7 +1,5 @@
 package wordPlay.util;
 
-
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -27,16 +25,14 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     }
     
     public void storeWrdRotaterResult(String str, boolean isSentenceComplete){
-    
-      
+         
       if (!isSentenceComplete){
         result = result.concat(str+" ");
       }
-      else{
-        
+      else{     
         result = result.concat(str+".\n");
       }
-       
+      
     }
     
     public void storeMetricsResult(float inAvgWordLength, float inAvgNumWordsPerSentence){
@@ -52,7 +48,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     
     public void writeToStdout(){
       
-      System.out.println("OUTPUT:");
       System.out.println(result);
       
     }
@@ -70,11 +65,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
         outputBufferedWriter.write(result.trim());
         
         outputBufferedWriter.close();
-       
-    
-        
+               
       }
-
-    
     	
 }

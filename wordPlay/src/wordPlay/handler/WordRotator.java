@@ -13,7 +13,6 @@ public class WordRotator{
   private FileProcessor fp;
   private Results res;
   
-
   
   public WordRotator(FileProcessor inFp, Results inRes){
     
@@ -34,7 +33,5 @@ public class WordRotator{
     return str;
     
   }
-  
-  
-    
+      
 }

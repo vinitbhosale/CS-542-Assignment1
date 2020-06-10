@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.nio.file.InvalidPathException;
 /**
- * @author John Doe
+ * @author Vinit Bhosale
  *
  */
 public class Driver {
@@ -22,21 +22,41 @@ public class Driver {
 			System.err.println("Error: Incorrect number of arguments. Program accepts 3 arguments.");
 			System.exit(0);
 		}
-		System.out.println("Hello World! Lets get started with the assignment");
+		//System.out.println("Hello World! Lets get started with the assignment");
+   try{
    
-    FileProcessor fileProcsr = new FileProcessor(args[0]);
-    Results wordRotRes = new Results(args[1]);
-    Results metricsRes = new Results(args[2]);
+      FileProcessor fileProcsr = new FileProcessor(args[0]);
     
-    Helper hp = new Helper(fileProcsr, wordRotRes, metricsRes);
-    
-    hp.wordRotate();
-    wordRotRes.writeToStdout();
-    wordRotRes.writeToFile();
-    metricsRes.writeToStdout();
-    metricsRes.writeToFile();
-    
-		
+      Results wordRotRes = new Results(args[1]);
+      Results metricsRes = new Results(args[2]);
+      
+      /**
+       * Created Helper class object for passing
+       * fileProcsr, wordRotRes, metricsRes object
+      */
+      Helper hp = new Helper(fileProcsr, wordRotRes, metricsRes);
+      
+      /**
+      * Calling wordRotate in Helper class
+      */
+      hp.wordRotate();
+      
+      /**
+      * Displaying the final result of wordRotate
+      * and metricsCalculator on Stdout, output file
+      * and metrics file
+      */
+      wordRotRes.writeToStdout();
+      wordRotRes.writeToFile();
+      metricsRes.writeToStdout();
+      metricsRes.writeToFile();
+   } catch(InvalidPathException e){
+     System.err.println("Error: Invalid input file path.");
+   } catch(FileNotFoundException e){
+     System.err.println("Error: Missing Input file.");  
+   }catch(IOException e){
+     System.err.println("Error: IO exception.");
+   }
 
 	}
 }
