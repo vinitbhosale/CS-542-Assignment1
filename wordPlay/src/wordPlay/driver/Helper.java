@@ -10,6 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.io.IOException;
+import wordPlay.userException.EmptyInputFileException;
+import wordPlay.userException.EmptyLineException;
+import wordPlay.userException.SpecialCharException;
 
 /**
 * Class consisting methods and data members for performming 
@@ -44,7 +47,7 @@ public class Helper{
     /**
     * function to rotate word
     */
-    public void wordRotate()throws IOException{
+    public void wordRotate()throws IOException, EmptyInputFileException, EmptyLineException, SpecialCharException{
       
       /**
       * creating object of rotation function in WordRotator file in handler
@@ -72,8 +75,7 @@ public class Helper{
       * Condition to check empty input file
       */
       if (null == str){
-        System.err.println("Error: Empty input file! try running program with sentence in input file.");
-        System.exit(0);
+        throw new EmptyInputFileException("Input file is empty!");
       }
       /**
       *
@@ -84,17 +86,14 @@ public class Helper{
         * condition to check whether empty line in input file
         */
         if (str.isEmpty()){
-            System.err.println("Error: Empty line in input file!");
-            System.exit(0);
+            throw new EmptyLineException("Input file contain empty line!");
         }
         else{
           /**
           * condition to check special charachters 
           */
           if (pattern.matcher(str).find()){
-        
-            System.err.println("Error: Word contain special charachter!. Try running program with no special charachter in input file.");
-            System.exit(0);  
+            throw new SpecialCharException("Input file contain special charachters!");   
           }
           else
           {

@@ -6,12 +6,15 @@ import wordPlay.driver.Helper;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.nio.file.InvalidPathException;
+import wordPlay.userException.EmptyInputFileException;
+import wordPlay.userException.EmptyLineException;
+import wordPlay.userException.SpecialCharException;
 /**
  * @author Vinit Bhosale
  *
  */
 public class Driver {
-	public static void main(String[] args)throws InvalidPathException, FileNotFoundException, IOException {
+	public static void main(String[] args)throws InvalidPathException, FileNotFoundException, IOException, EmptyInputFileException, EmptyLineException, SpecialCharException {
 
 		/*
 		 * As the build.xml specifies the arguments as input,output or metrics, in case the
@@ -50,12 +53,8 @@ public class Driver {
       wordRotRes.writeToFile();
       metricsRes.writeToStdout();
       metricsRes.writeToFile();
-   } catch(InvalidPathException e){
-     System.err.println("Error: Invalid input file path.");
-   } catch(FileNotFoundException e){
-     System.err.println("Error: Missing Input file.");  
-   }catch(IOException e){
-     System.err.println("Error: IO exception.");
+   } catch(InvalidPathException | IOException | EmptyInputFileException | EmptyLineException | SpecialCharException e){
+     System.err.println(e.getMessage());
    }
 
 	}
