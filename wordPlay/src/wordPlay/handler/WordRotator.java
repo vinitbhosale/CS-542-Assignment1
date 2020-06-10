@@ -48,5 +48,10 @@ public class WordRotator{
     return str;
     
   }
+  
+  @Override
+  public String toString(){
+    return "Class: WordRotator, Data members:[fp="+fp.toString()+", res="+res.toString()+"]";
+  }
       
 }

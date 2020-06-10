@@ -58,5 +58,11 @@ public class MetricsCalculator {
       avgNumWordsPerSentence = sum/dot;  
   
   }
+  
+  @Override
+  public String toString(){
+    return "Class: MetricsCalculator, Data members:[avgWordLength="+avgWordLength+", avgNumWordsPerSentence="+
+    avgNumWordsPerSentence+"]";
+  }
 
 }

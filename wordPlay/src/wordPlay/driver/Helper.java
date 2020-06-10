@@ -164,4 +164,10 @@ public class Helper{
         
     }
     
+    @Override
+    public String toString(){
+      return "Class: Helper, Data Members: [fp="+fp.toString()+", wordRotResult="+wordRotResult.toString()+", metricsCalResult= "+
+      metricsCalResult.toString()+", wordList= "+wordList.toString()+"]";
+    }
+    
 }

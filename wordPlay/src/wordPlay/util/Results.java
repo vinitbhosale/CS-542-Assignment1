@@ -96,5 +96,12 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
         outputBufferedWriter.close();
                
       }
+      
+      @Override
+      public String toString(){
+        return "Class: Results, Data members:[result="+result.toString()+", avgWordLength="+avgWordLength+", avgNumWordsPerSentence="+
+        avgNumWordsPerSentence+", filePath="+filePath.toString()+", outputFile="+outputFile.toString()+", outputBufferedWriter="+
+        outputBufferedWriter.toString()+"]";
+      }
     	
 }
